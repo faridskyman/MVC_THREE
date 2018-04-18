@@ -13,6 +13,21 @@ namespace MVC_Three
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //route is now defined in controller via this approach (see movie controller)
+            routes.MapMvcAttributeRoutes(); //a better way to manage routes
+
+
+            /*
+            routes.MapRoute(
+                "MoviesByReleaseDate",
+                "movies/released/{year}/{month}",
+                new { controller = "Movies", action = "ByReleaseDate", year = 2018, month = 1 },
+                // new { year = @"\d{4}", month = @"\d{2}"  } //constraints the param entered to 4, 2 digits respectively.
+                new { year = @"2015|2016", month = @"\d{2}" } //constraints year to 2015-2016
+                );
+                */
+
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
