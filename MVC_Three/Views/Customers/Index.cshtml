@@ -1,0 +1,20 @@
+﻿@model List<MVC_Three.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Customers</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    @foreach (var customer in Model)
+    {
+        <tr><th scope="row"><a href="details/@customer.Id">@customer.Name</a></th></tr>
+    }
+</table>
