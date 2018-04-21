@@ -29,8 +29,6 @@ namespace MVC_Three.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-          
-
             return View(GetCustomers());
         }
 

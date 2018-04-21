@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th scope="col">Name</th>
-            <th scope="col">Discount Rate</th>
+            <th scope="col">Membership Type</th>
         </tr>
     </thead>
     @foreach (var customer in Model)
@@ -24,7 +24,7 @@
         when we do this we get NULL
         to solve do EAGER LOADING (see customer controller)
         <td>@customer.MembershipType.DiscountRate</td>*@
-        <td>@customer.MembershipType.DiscountRate %</td>
+        <td>@customer.MembershipType.Name</td>
     </tr>
 
     }

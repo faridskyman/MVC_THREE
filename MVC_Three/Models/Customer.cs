@@ -21,5 +21,8 @@ namespace MVC_Three.Models
         
         //foreign key to MembershipType table.
         public byte MembershipTypeId { get; set; }
+
+        //add birthdate
+        public DateTime? BirthDate { get; set; }
     }
 }

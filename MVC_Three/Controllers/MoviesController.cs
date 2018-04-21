@@ -5,12 +5,54 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_Three.Models;
 using MVC_Three.ViewModels;
+using System.Data.Entity;
 
 
 namespace MVC_Three.Controllers
 {
     public class MoviesController : Controller
     {
+        //dbconnection setup
+        private ApplicationDbContext _context;
+
+        /// <summary>
+        /// instantiate this object on load of this object
+        /// this is the constructor
+        /// </summary>
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+        
+        
+
+        /// <summary>
+        /// clean up and close connection to db after done
+        /// </summary>
+        /// <param name="disposing"></param>
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+
+        public ViewResult Index()
+        {
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            return View(movies);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View(movie);
+        }
+
+
         // GET: Movies/Random
         public ActionResult Random()
         {

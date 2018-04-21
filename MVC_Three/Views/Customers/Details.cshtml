@@ -11,14 +11,26 @@
     <tr>
         <td>ID</td>
         <td>Name</td>
-        <td>MembershipTypeId</td>
-        <td>IsSubscribedToNewsletter</td>
+        <td>Membership Type</td>
+        <td>Is Subscribed To Newsletter</td>
+        <td>Birth Date</td>
     </tr>
     <tr>
         <td>@Model.Id</td>
         <td>@Model.Name</td>
-        <td>@Model.MembershipTypeId</td>
+        <td>@Model.MembershipType.Name</td>
         <td>@Model.IsSubscribedToNewsletter</td>
+        @if (Model.BirthDate != null)
+        {
+            <td>@Model.BirthDate</td>
+        }
+        else
+        {
+            <td>&nbsp;</td>
+        }
+
+
+
     </tr>
 
 
