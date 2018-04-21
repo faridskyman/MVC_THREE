@@ -11,10 +11,21 @@
     <thead>
         <tr>
             <th scope="col">Name</th>
+            <th scope="col">Discount Rate</th>
         </tr>
     </thead>
     @foreach (var customer in Model)
     {
-        <tr><th scope="row"><a href="details/@customer.Id">@customer.Name</a></th></tr>
+    <tr>
+        <td scope="row"><a href="/Customers/details/@customer.Id">@customer.Name</a></td>
+        @*
+        we cant call membershiptype (ref table like this as )
+        EF only loaded customers table only
+        when we do this we get NULL
+        to solve do EAGER LOADING (see customer controller)
+        <td>@customer.MembershipType.DiscountRate</td>*@
+        <td>@customer.MembershipType.DiscountRate %</td>
+    </tr>
+
     }
 </table>
