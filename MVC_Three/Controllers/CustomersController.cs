@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using MVC_Three.ViewModels;
 
 namespace MVC_Three.Controllers
 {
@@ -26,6 +27,46 @@ namespace MVC_Three.Controllers
             _context.Dispose();
         }
 
+
+        public ActionResult New()
+        {
+            var _membershipType = _context.MembershipTypes.ToList();
+            var viewModel = new CustomerFormVideoModel
+            {
+                membershipTypes = _membershipType
+            };
+            return View("CustomerForm", viewModel);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="viewMode">mvc wil then sort out from view and send back data in this format, model binding</param>
+        /// <param name="viewMode">from NewCustomerViewMode we can also use Customer, MVC will be able to modelbind</param>
+        /// <returns></returns>
+        [HttpPost] //only allow post 
+        public ActionResult Save(Customer customer)
+        {
+            if (customer.Id == 0)
+            {
+                _context.Customers.Add(customer); //saved in memory, not yet in db
+            }
+            else
+            {
+                var customerInDB = _context.Customers.Single(c => c.Id == customer.Id);
+
+                customerInDB.Name = customer.Name;
+                customerInDB.BirthDate= customer.BirthDate;
+                customerInDB.MembershipTypeId = customer.MembershipTypeId;
+                customerInDB.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+
+            }
+            
+            _context.SaveChanges(); //now then its saved to DB
+
+            return RedirectToAction("Index", "Customers"); //redirect to index/customer
+        }
+
         // GET: Customers
         public ActionResult Index()
         {
@@ -40,6 +81,23 @@ namespace MVC_Three.Controllers
                 return HttpNotFound();
             else
                 return View(customer);
+        }
+
+
+        public ActionResult Edit(int Id)
+        {
+            var customer = _context.Customers.SingleOrDefault(s => s.Id == Id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            //New form requires NewCustomerViewMode, so we will create that before going to "CustomerForm"
+            CustomerFormVideoModel viewModel = new CustomerFormVideoModel
+            {
+                Customer = customer,
+                membershipTypes = _context.MembershipTypes.ToList()
+            };
+                return View("CustomerForm", viewModel); //redirect users to "New" action in customers
         }
 
 

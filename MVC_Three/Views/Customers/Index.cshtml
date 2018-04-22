@@ -7,11 +7,14 @@
 
 <h2>Customers</h2>
 
+@Html.ActionLink("New Customer", "New", "Customers", new { @class = "btn btn-primary" })
+
 <table class="table">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Membership Type</th>
+            <th scope="col">Options</th>
         </tr>
     </thead>
     @foreach (var customer in Model)
@@ -25,6 +28,14 @@
         to solve do EAGER LOADING (see customer controller)
         <td>@customer.MembershipType.DiscountRate</td>*@
         <td>@customer.MembershipType.Name</td>
+        <td>
+            @*below when the last param is missing 'null', the link will all show length=9
+                so takenote
+                *@
+            @Html.ActionLink("Edit", "Edit", "Customers", new { Id = customer.Id }, null)
+            
+
+        </td>
     </tr>
 
     }

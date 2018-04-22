@@ -53,6 +53,54 @@ namespace MVC_Three.Controllers
         }
 
 
+        public ActionResult New()
+        {
+            var _genre = _context.Genres.ToList();
+
+            var movieFormViewModel = new MovieFormViewModel()
+            {
+                genre = _genre
+            };
+            return View("MovieForm", movieFormViewModel);
+        }
+
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                Movie _movieFromDB = _context.Movies.Single(m => m.Id == movie.Id);
+                _movieFromDB.Name = movie.Name;
+                _movieFromDB.NumberInStock = movie.NumberInStock;
+                _movieFromDB.ReleasedDate = movie.ReleasedDate;
+                _movieFromDB.GenreId = movie.GenreId;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
+        }
+
+
+        public ActionResult Edit(int Id)
+        {
+            var _movie = _context.Movies.SingleOrDefault(m => m.Id == Id);
+
+            if (_movie == null)
+                return HttpNotFound();
+
+            MovieFormViewModel viewModel = new MovieFormViewModel()
+            {
+                movie = _movie,
+                genre = _context.Genres.ToList()
+            };
+
+            return View("MovieForm",viewModel);
+        }
+
+
+
         // GET: Movies/Random
         public ActionResult Random()
         {

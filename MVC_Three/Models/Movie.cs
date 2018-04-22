@@ -15,15 +15,20 @@ namespace MVC_Three.Models
         public string Name { get; set; }
 
 
-        [Required]
+        
         public Genre Genre { get; set; } /*navi prop to genre*/
+
+        [Required]
+        [Display(Name ="Genre")]
         public Byte GenreId { get; set; } /* foreign key */
 
-
+        [Display(Name = "Date Added")]
         public DateTime DateAdded { get; set; }
 
+        [Display(Name="Release Date")]
         public DateTime ReleasedDate { get; set; }
 
+        [Display(Name="No. in stock")]
         public byte NumberInStock { get; set; }
 
  

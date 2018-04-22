@@ -20,9 +20,11 @@ namespace MVC_Three.Models
         public MembershipType MembershipType { get; set; }
         
         //foreign key to MembershipType table.
+        [Display(Name="Membership Type")]
         public byte MembershipTypeId { get; set; }
 
         //add birthdate
+        [Display(Name="Date of birth")]
         public DateTime? BirthDate { get; set; }
     }
 }
