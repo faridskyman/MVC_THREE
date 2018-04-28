@@ -59,13 +59,25 @@ namespace MVC_Three.Controllers
 
             var movieFormViewModel = new MovieFormViewModel()
             {
+                movie = new Movie(),
                 genre = _genre
             };
             return View("MovieForm", movieFormViewModel);
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if(!ModelState.IsValid)
+            {
+                var moviefrmVMdl = new MovieFormViewModel()
+                {
+                    movie = new Movie(),
+                    genre = _context.Genres.ToList()
+                };
+                return View("MovieForm", moviefrmVMdl);
+            }
+
             if (movie.Id == 0)
             {
                 _context.Movies.Add(movie);

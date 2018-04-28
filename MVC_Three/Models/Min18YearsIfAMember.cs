@@ -13,7 +13,8 @@ namespace MVC_Three.Models
         {
             var customer = (Customer)validationContext.ObjectInstance;
 
-            if (customer.MembershipTypeId == 1 || customer.MembershipTypeId == 0)
+            if (customer.MembershipTypeId == MembershipType.PayAsYouGo
+                || customer.MembershipTypeId == MembershipType.Unknown)
                 return ValidationResult.Success;
 
             if (customer.BirthDate == null)

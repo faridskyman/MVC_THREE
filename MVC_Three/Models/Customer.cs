@@ -24,7 +24,6 @@ namespace MVC_Three.Models
         public byte MembershipTypeId { get; set; }
 
         //add birthdate
-        //[Min18YearsIfAMember]
         [Display(Name="Date of birth")]
         [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }

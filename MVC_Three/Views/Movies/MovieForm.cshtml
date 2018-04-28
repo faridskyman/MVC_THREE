@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm("Save", "Movies"))
 {
-    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(excludePropertyErrors:true, message: "pls complete form")
 
     @*
         Name, GenreID, DateAdded, ReleaseDate, NUmberinStock
@@ -18,6 +18,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.movie.Name)
         @Html.TextBoxFor(m => m.movie.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.movie.Name)
     </div>
 
     <div class="form-group">
@@ -26,6 +27,7 @@
                                new SelectList(Model.genre, "id", "Name"),
                                "--select--",
                                new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.movie.GenreId)
     </div>
 
     <div class="form-group">
@@ -55,6 +57,7 @@
     </div>
 
     @Html.HiddenFor(m => Model.movie.Id)
+    @Html.AntiForgeryToken()
 
     <button type="submit" class="btn btn-primary">Save</button>
 

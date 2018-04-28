@@ -28,6 +28,7 @@ namespace MVC_Three.Models
         [Display(Name="Release Date")]
         public DateTime ReleasedDate { get; set; }
 
+        [Range(1,20,ErrorMessage ="Allowed Range 1-20 only")]
         [Display(Name="No. in stock")]
         public byte NumberInStock { get; set; }
 

@@ -7,7 +7,9 @@
 
 <h2>Customers</h2>
 
-@Html.ActionLink("New Customer", "New", "Customers", new { @class = "btn btn-primary" })
+@* new { Controller = "Customers" } fixes the problem where button has ?length=9, this seems to be the
+    cause of new record having issues (cant add records apprantly)*@
+@Html.ActionLink(linkText: "New Customer", actionName: "New", routeValues: new { Controller = "Customers" }, htmlAttributes: new { @class = "btn btn-primary" })
 
 <table class="table">
     <thead>

@@ -33,6 +33,7 @@ namespace MVC_Three.Controllers
             var _membershipType = _context.MembershipTypes.ToList();
             var viewModel = new CustomerFormVideoModel
             {
+                Customer = new Customer(),
                 membershipTypes = _membershipType
             };
             return View("CustomerForm", viewModel);
@@ -45,6 +46,7 @@ namespace MVC_Three.Controllers
         /// <param name="viewMode">from NewCustomerViewMode we can also use Customer, MVC will be able to modelbind</param>
         /// <returns></returns>
         [HttpPost] //only allow post 
+        [ValidateAntiForgeryToken] //validates token to ensure post data is not from hacker site.
         public ActionResult Save(Customer customer)
         {
             // use mode state property to get access to state data
@@ -55,8 +57,8 @@ namespace MVC_Three.Controllers
             // i needed to to do this as during validaiton modelstate is always false as
             //  id is 0 and thats seems to fail validation. Hence if its a new record, 
             //  remove Id from validation.
-            if (customer.Id == 0)
-                ModelState.Remove("Customer.Id");
+            //if (customer.Id == 0)
+            //    ModelState.Remove("Customer.Id");
 
 
             if (!ModelState.IsValid)

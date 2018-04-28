@@ -28,6 +28,6 @@ textarea {
     
 }
 
-.field-validation-error {
-    color:red;
+.field-validation-error, .validation-summary-errors {
+    color: red;
 }
