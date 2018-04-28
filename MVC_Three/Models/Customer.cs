@@ -10,7 +10,7 @@ namespace MVC_Three.Models
     {
         public int Id { get; set; }
 
-        [Required] /*make column name non nullable*/
+        [Required(ErrorMessage = "Please Enter in clients full name")] /*make column name non nullable*/
         [StringLength(255)] /*limit string length*/
         public string Name { get; set; }
 
@@ -24,7 +24,9 @@ namespace MVC_Three.Models
         public byte MembershipTypeId { get; set; }
 
         //add birthdate
+        //[Min18YearsIfAMember]
         [Display(Name="Date of birth")]
+        [Min18YearsIfAMember]
         public DateTime? BirthDate { get; set; }
     }
 }

@@ -47,6 +47,31 @@ namespace MVC_Three.Controllers
         [HttpPost] //only allow post 
         public ActionResult Save(Customer customer)
         {
+            // use mode state property to get access to state data
+            // if the model is not valid due to not meeting the 'data annotation' 
+            //      in the model then isvalid is false, 
+            //      so we return the customer back to the customer form.
+
+            // i needed to to do this as during validaiton modelstate is always false as
+            //  id is 0 and thats seems to fail validation. Hence if its a new record, 
+            //  remove Id from validation.
+            if (customer.Id == 0)
+                ModelState.Remove("Customer.Id");
+
+
+            if (!ModelState.IsValid)
+            {
+                var custfmVModel = new CustomerFormVideoModel
+                {
+                    Customer = customer,
+                    membershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", custfmVModel);
+                
+            }
+            
+
+
             if (customer.Id == 0)
             {
                 _context.Customers.Add(customer); //saved in memory, not yet in db
