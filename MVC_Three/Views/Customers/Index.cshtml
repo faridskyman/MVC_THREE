@@ -11,12 +11,14 @@
     cause of new record having issues (cant add records apprantly)*@
 @Html.ActionLink(linkText: "New Customer", actionName: "New", routeValues: new { Controller = "Customers" }, htmlAttributes: new { @class = "btn btn-primary" })
 
-<table class="table">
+<br /><br />
+<table class="table table-bordered table-hover" id="customers">
     <thead>
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Membership Type</th>
             <th scope="col">Options</th>
+            <th>Delete</th>
         </tr>
     </thead>
     @foreach (var customer in Model)
@@ -38,7 +40,42 @@
             
 
         </td>
+
+        <td>
+            <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
+        </td>
     </tr>
 
     }
 </table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this) // get reference to the clicked button
+                bootbox.confirm("are you sure?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                console.log("Delete Success!");
+                                //delete the entire TR record that has been deleted
+                                button.parents("tr").remove();
+                            }
+
+                        });
+                    }
+                });
+
+                //if (confirm("are you sure?")) {
+                    //alert("deleting...");
+                    
+                 
+            });
+        });
+    </script>
+    
+}

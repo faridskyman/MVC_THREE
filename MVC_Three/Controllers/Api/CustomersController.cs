@@ -86,17 +86,18 @@ namespace MVC_Three.Controllers.Api
 
         //DELETE /api/customers/1
         [HttpDelete]
-        public void DeleteCustomer(int id)
+        public IHttpActionResult DeleteCustomer(int id)
         {
             // get current rec from db
             var customerInDB = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             //if null 
             if (customerInDB == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             _context.Customers.Remove(customerInDB);
             _context.SaveChanges();
+            return Ok();
         }
 
     }
