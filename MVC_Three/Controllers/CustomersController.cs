@@ -97,7 +97,8 @@ namespace MVC_Three.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(GetCustomers());
+            // return View(GetCustomers());
+            return View();
         }
 
         public ActionResult Details(int Id)

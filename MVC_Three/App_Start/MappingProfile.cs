@@ -14,7 +14,9 @@ namespace MVC_Three.App_Start
         {
             Mapper.CreateMap<Customer, CustomerDto>();
             Mapper.CreateMap<Movie, MovieDto>();
-                
+
+            Mapper.CreateMap<MembershipType, MembershipTypeDto>();
+
 
             Mapper.CreateMap<CustomerDto, Customer>()
                 .ForMember(m => m.Id, opt => opt.Ignore());
