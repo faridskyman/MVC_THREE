@@ -56,7 +56,10 @@
 
             //link up to data table
             //get ref to the table and apply DataTable function to it
-            $('#customers').DataTable({
+            //get the result of the api call and store it in table?
+            //  anyways we did this so that on delete, the record is also removed from
+            //  the internal json list too (refer to delete action below...)
+            var table = $('#customers').DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: "" //the return data from ws is already the customer object, no need to identify the source of the data anymore.
@@ -91,7 +94,16 @@
                             success: function () {
                                 console.log("Delete Success!");
                                 //delete the entire TR record that has been deleted
-                                button.parents("tr").remove();
+                                // below only removes the TR, we are now going to remove it
+                                //      from the json list (since we are no handling this on
+                                //      client side)
+                                //button.parents("tr").remove();
+                                //  table is the internal json list
+                                //  button.parents("tr"), is ref to the row that is deleted
+                                //  .remove(), removes it from the list
+                                //  .draw() commands dataTable to redraw the table (hence exclusing the del row)
+                                //  as prev way will still show (del rec) it on search.
+                                table.row(button.parents("tr")).remove().draw();
                             }
 
                         });
