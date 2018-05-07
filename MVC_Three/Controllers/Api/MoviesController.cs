@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,7 +24,8 @@ namespace MVC_Three.Controllers.Api
         //GET /api/movies
         public IEnumerable<MovieDto> GetMovies()
         {
-            return _context.Movies.ToList()
+            return _context.Movies.Include(m => m.Genre)
+                .ToList()
                 .Select(Mapper.Map<Movie, MovieDto>);
         }
 
