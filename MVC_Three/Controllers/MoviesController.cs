@@ -38,10 +38,16 @@ namespace MVC_Three.Controllers
 
         public ViewResult Index()
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
-        }
+            //var movies = _context.Movies.Include(m => m.Genre).ToList();
+            //return View(movies);
 
+            //only allow user with canModifyMovie to see list page
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            // dont need else as if match role already at list and if dont match will read last line.
+            return View("ReadOnlyList");
+        }
+        
         public ActionResult Details(int id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
@@ -52,7 +58,7 @@ namespace MVC_Three.Controllers
             return View(movie);
         }
 
-
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var _genre = _context.Genres.ToList();

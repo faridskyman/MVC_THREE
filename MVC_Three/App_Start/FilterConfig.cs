@@ -7,7 +7,8 @@ namespace MVC_Three
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute()); //redir user to err page if page throws err
+            filters.Add(new AuthorizeAttribute()); //make entire app authorized.
         }
     }
 }
