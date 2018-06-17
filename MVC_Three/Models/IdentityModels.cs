@@ -24,6 +24,8 @@ namespace MVC_Three.Models
         public DbSet <Movie> Movies { get; set; }
         public DbSet <MembershipType> MembershipTypes { get; set; }
         public DbSet <Genre> Genres { get; set; }
+        public DbSet <Feedback> Feedbacks { get; set; }
+        public DbSet <FeedbackType> feedbackTypes { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

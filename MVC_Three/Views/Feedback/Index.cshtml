@@ -1,0 +1,37 @@
+﻿@model List<MVC_Three.Models.Feedback>
+@{
+    ViewBag.Title = "Feedback Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Feedback Index</h2>
+
+@Html.ActionLink(linkText: "Add Feedback", actionName: "New", controllerName: "Feedback")
+
+<br />
+
+<table class="table table-bordered table-hover" id="feedbacks">
+    <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Feedback Type</th>
+            <th scope="col">Email</th>
+            <th scope="col">Description</th>
+        </tr>
+    </thead>
+
+    @foreach(var feedback in Model)
+    {
+        <tr>
+            <td scope="row">
+                @feedback.DateAdded
+            </td>
+            <td>@feedback.FeedbackType.Name</td>
+            <td>@feedback.Email</td>
+            <td>@feedback.Description</td>
+        </tr>
+    }
+
+</table>
+
+

@@ -248,9 +248,27 @@
     <Compile Include="Migrations\201805080103018_Seed-Users.Designer.cs">
       <DependentUpon>201805080103018_Seed-Users.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806170827267_add-FeedbackModel.cs" />
+    <Compile Include="Migrations\201806170827267_add-FeedbackModel.Designer.cs">
+      <DependentUpon>201806170827267_add-FeedbackModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171004375_add-FeedbackType-Model.cs" />
+    <Compile Include="Migrations\201806171004375_add-FeedbackType-Model.Designer.cs">
+      <DependentUpon>201806171004375_add-FeedbackType-Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171014347_SeedFeedbackType.cs" />
+    <Compile Include="Migrations\201806171014347_SeedFeedbackType.Designer.cs">
+      <DependentUpon>201806171014347_SeedFeedbackType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806171036374_updated-feedback.cs" />
+    <Compile Include="Migrations\201806171036374_updated-feedback.Designer.cs">
+      <DependentUpon>201806171036374_updated-feedback.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\FeedbackType.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -262,6 +280,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MovieFormViewModel.cs" />
     <Compile Include="ViewModels\NewCustomerViewMode.cs" />
+    <Compile Include="ViewModels\NewFeedbackViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -505,10 +524,11 @@
     <Content Include="Views\Customers\CustomerForm.cshtml" />
     <Content Include="Views\Movies\MovieForm.cshtml" />
     <Content Include="Views\Movies\ReadOnlyList.cshtml" />
+    <Content Include="Views\Feedback\Index.cshtml" />
+    <Content Include="Views\Feedback\FeedbackForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Feedback\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -557,6 +577,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805080103018_Seed-Users.resx">
       <DependentUpon>201805080103018_Seed-Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806170827267_add-FeedbackModel.resx">
+      <DependentUpon>201806170827267_add-FeedbackModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171004375_add-FeedbackType-Model.resx">
+      <DependentUpon>201806171004375_add-FeedbackType-Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171014347_SeedFeedbackType.resx">
+      <DependentUpon>201806171014347_SeedFeedbackType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806171036374_updated-feedback.resx">
+      <DependentUpon>201806171036374_updated-feedback.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
