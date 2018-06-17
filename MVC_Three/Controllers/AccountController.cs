@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MVC_Three.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MVC_Three.Controllers
 {
@@ -17,6 +18,7 @@ namespace MVC_Three.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+     
 
         public AccountController()
         {
@@ -156,7 +158,15 @@ namespace MVC_Three.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+
+                    //populate a store manager temp code
+                        //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                        //var rolemanager = new RoleManager<IdentityRole>(roleStore);
+                        //await rolemanager.CreateAsync(new IdentityRole("CanManageMovies"));
+                        //await UserManager.AddToRoleAsync(user.Id, "CanManageMovies");                   
+                    //end 
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
