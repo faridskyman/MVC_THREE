@@ -13,11 +13,13 @@ namespace MVC_Three.Controllers
     {
         //db conn
         private ApplicationDbContext _context;
+        private AuditController auditctl;
 
         // init db context for feedback constructor
         public FeedbackController()
         {
             _context = new ApplicationDbContext();
+            auditctl = new AuditController();
         }
 
         // close connecction to db
@@ -30,6 +32,7 @@ namespace MVC_Three.Controllers
         // GET: Feedback, show list of feedback
         public ActionResult Index()
         {
+            auditctl.AddAudit((int)AuditEvents.Events.ViewFeedbackList, "view fb", "demouser");
             return View(GetFeedbacks());
         }
 
@@ -45,6 +48,11 @@ namespace MVC_Three.Controllers
         /// <returns></returns>
         public ActionResult New()
         {
+            // add audit
+
+            auditctl.AddAudit((int)AuditEvents.Events.AddFeedback, "adding fb", "demouser");
+            
+
             var _feedbackType = _context.feedbackTypes.ToList(); //get all records from fb-type
             var viewModel = new NewFeedbackViewModel
             {

@@ -26,6 +26,7 @@ namespace MVC_Three.Models
         public DbSet <Genre> Genres { get; set; }
         public DbSet <Feedback> Feedbacks { get; set; }
         public DbSet <FeedbackType> feedbackTypes { get; set; }
+        public DbSet <Audit> Audits { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

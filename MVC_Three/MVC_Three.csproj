@@ -185,6 +185,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\AuditController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -264,8 +265,13 @@
     <Compile Include="Migrations\201806171036374_updated-feedback.Designer.cs">
       <DependentUpon>201806171036374_updated-feedback.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806301114120_AuditAdded.cs" />
+    <Compile Include="Migrations\201806301114120_AuditAdded.Designer.cs">
+      <DependentUpon>201806301114120_AuditAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Audit.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\FeedbackType.cs" />
@@ -529,6 +535,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Audit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -589,6 +596,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806171036374_updated-feedback.resx">
       <DependentUpon>201806171036374_updated-feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806301114120_AuditAdded.resx">
+      <DependentUpon>201806301114120_AuditAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
